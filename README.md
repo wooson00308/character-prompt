@@ -1,5 +1,94 @@
 # Character Memory Management System
 
+## 📝 Project Overview
+
+이 프로젝트는 AI 캐릭터의 기억을 관리하는 시스템입니다. 단기 기억(ShortTermMemory)과 장기 기억(LongTermMemory)을 구분하여 저장하고, 각각의 특성에 맞는 관리 방식을 적용합니다.
+
+## 🗂 Directory Structure
+
+```
+character-prompt/
+├── SASHA/
+│   ├── ShortTermMemory/
+│   │   └── daily_YYYY_MM_DD.json   # 일별 대화 및 상호작용 기록
+│   ├── LongTermMemory/
+│   │   ├── long_term_memory.json   # 장기 기억 저장소
+│   │   └── archive/                # 보관된 기억 저장소
+│   └── FileConvention.txt          # 파일 관리 프로토콜
+└── README.md
+```
+
+## 💾 Memory Management
+
+### ShortTermMemory
+- 일주일 단위로 기억을 관리
+- 날짜별로 파일 분리 (daily_YYYY_MM_DD.json)
+- 대화, 감정 상태, 활동 내역 등을 실시간으로 기록
+- 구조:
+  ```json
+  {
+    "date": "YYYY-MM-DD",
+    "conversation": [
+      {
+        "time": "HH:mm:ss",
+        "user_message": "사용자 메시지",
+        "sasha_response": "AI 응답",
+        "sasha_emotion": "감정 상태",
+        "activity": "수행한 활동"
+      }
+    ],
+    "meta": {
+      "current_entries": 1,
+      "max_entries": 500,
+      "last_updated": "YYYY-MM-DD HH:mm:ss"
+    }
+  }
+  ```
+
+### LongTermMemory
+- 중요한 기억을 영구적으로 저장
+- 단일 파일로 관리 (long_term_memory.json)
+- 중요도에 따른 메모리 압축 및 보관
+- 구조:
+  ```json
+  {
+    "user_id": "사용자 ID",
+    "timeline": [
+      {
+        "original_date": "YYYY-MM-DD",
+        "stored_date": "YYYY-MM-DD",
+        "event_type": "이벤트 유형",
+        "description": "상세 설명",
+        "user_emotion": "사용자 감정",
+        "importance": 1-5
+      }
+    ],
+    "meta": {
+      "current_entries": 0,
+      "importance_scale": "1-5",
+      "max_storage": "100MB"
+    }
+  }
+  ```
+
+## 📋 Development History
+
+### Initial Setup (2025-04-05)
+1. 프로젝트 구조 설정
+   - SASHA 디렉토리 생성
+   - 메모리 관리를 위한 하위 디렉토리 구성
+   - FileConvention.txt 작성
+
+2. 기억 관리 프로토콜 정의
+   - 단기/장기 기억 구조 설계
+   - 파일 명명 규칙 수립
+   - 메모리 관리 로직 정의
+
+3. 커밋 컨벤션 수립
+   - 기억 관리 시스템에 특화된 커밋 타입 정의
+   - 스코프 및 규칙 설정
+   - 예제 커밋 메시지 작성
+
 ## 🎯 Commit Convention
 
 ### Format
